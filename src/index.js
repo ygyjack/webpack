@@ -15,14 +15,19 @@ import Data from './data.xml';
 */
 import printMe from './print.js';
 
+/*
+* CHAPTER 6
+*/
+import { cube } from './math.js';
+
 
 function component() {
   let element = document.createElement('div');
 
   // lodash（目前通过一个 script 引入）对于执行这一行是必需的
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  var output = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join([output+':', '5 cubed is equal to ' + cube(5)], ' ');
   element.classList.add('hello');
-    
     
   var myIcon = new Image();
   myIcon.src = Icon;
@@ -37,7 +42,6 @@ function component() {
 
    element.appendChild(btn);
 
-    
 
   return element;
 }
