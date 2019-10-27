@@ -11,3 +11,6 @@
   font-family: 'MyFont';
   background: url('./icon.svg');
 }
+body {
+  background: fff;
+}

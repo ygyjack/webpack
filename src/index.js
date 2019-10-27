@@ -33,7 +33,7 @@ function component() {
     
     var btn = document.createElement('button');
     btn.innerHTML = '点击这里，然后查看 console！';
-   btn.onclick = printMe;
+   btn.onclick = printMe;  // onclick 事件绑定原始的 printMe 函数上
 
    element.appendChild(btn);
 
@@ -42,4 +42,16 @@ function component() {
   return element;
 }
 
-document.body.appendChild(component());
+ let element = component(); // 存储 element，以在 print.js 修改时重新渲染
+ document.body.appendChild(element);
+
+
+ if (module.hot) {
+   module.hot.accept('./print.js', function() {
+     console.log('Accepting the updated printMe module!');
+     document.body.removeChild(element);
+     element = component(); // Re-render the "component" to update the click handler
+     element = component(); // 重新渲染 "component"，以便更新 click 事件处理函数
+     document.body.appendChild(element);
+   })
+ }
